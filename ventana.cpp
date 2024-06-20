@@ -1,3 +1,6 @@
+//Codigo de Jose Ignacio Nava Castillo
+
+
 #define _WIN32_WINNT 0x0500 // Es necesaria esta definicion para esconder ventana de consola
 
 #include <windows.h> // Libreria que contiene las funciones de Winapi
