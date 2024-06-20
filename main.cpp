@@ -1,72 +1,126 @@
 #include <iostream>
+#include <cstring>
 using namespace std;
+const int reser_maxi=100;
+char nom[reser_maxi][100];
+char mes[reser_maxi][100];
+int diass[reser_maxi];
+int hora[reser_maxi];
+int com[reser_maxi];
+int cont=0;
+void crearR()
+{
+    cout<<" RESERVACIONES\n ";
+    cout<<" Para realizar su reservacion conteste el pequeño formulario "<<endl;
+    cout<<" Ingrese el nombre a quien quedaria la reservacion\n ";
+    cin>>nom[cont];
+    cout<<" ¿Para que fecha le gustaria asignar su reservacion?, especifique el dia "<<endl;
+    cin>>diass[cont];
+    cout<<" Por favor ingrese el mes deseado "<<endl;
+    cin>>mes[cont];
+    cout<<" Ahora seleccione el horario, es importante que lo seleccione EN FORMATO 24HRS "<<endl;
+    cin>>hora[cont];
+    cout<<" ¿Para cuantos comensales seria su mesa?"<<endl;
+    cin>>com[cont];
+    cout<<" Reservacion agendada\n";
+    cont++;
+}
+
+void listR()
+{ int i;
+    for( i=0; i<=cont; i++)
+    {
+        cout<<" RESERVACION "<<i+1<<nom[i]<<" el dia "<<diass[i]<<" de "<<mes[i]<<" a las "<<hora[i]<<" horas con una mesa para "<<com[i]<<" comenzales"<<endl;   
+    }
+}
+
+void actR()
+{
+    int ind;
+    cout<<" Ingrese el numero de reservacion que desee actualizar\n ";
+    cin>>ind;
+    if(ind-1<cont && ind>0)
+    {
+        cout<<" Has seleccionado CONSULTAR TU RESERVACION "<<endl;
+        cout<<" Para reagendar le solicitamos llenar el formulario nuevamente con sus cambios corespondientes\n ";
+        cout<<" Ingrese el nombre a quien quedaria la reservacion\n ";
+        cin>>nom[ind-1];
+        cout<<" ¿Para que fecha le gustaria asignar su reservacion?, especifique el dia "<<endl;
+        cin>>diass[ind-1];
+        cout<<" Por favor ingrese el mes deseado "<<endl;
+        cin>>mes[ind-1];
+        cout<<" Ahora seleccione el horario, es importante que lo seleccione EN FORMATO 24HRS "<<endl;
+        cin>>hora[ind-1];
+        cout<<" ¿Para cuantos comensales seria su mesa?"<<endl;
+        cin>>com[ind-1];
+        cout<<" Okay, reservacion actualizada para visualizar sus cambios vea sus reservaciones\n "; 
+    }
+    else
+    {
+        cout<<" Ups la reservacion no fue encontrada "<<endl;
+    }
+}
+
+void eliR()
+{
+    int ind;
+    cout<<" Ingresa el numero de reservacion que quieras eliminar\n ";
+    cin>>ind;
+    if(ind-1<cont && ind>0)
+    {
+        for( int i= ind-1; i<=cont-1; i++)
+        {
+            strcpy(nom[i], nom[i+1]);
+            diass[i]=diass[i+1];
+            strcpy(mes[i], mes[i+1]);
+            hora[i]=hora[i+1];
+            com[i]=com[i+1];
+        }
+        cont--;
+        cout<<" Reservacion eliminada\n";
+    }
+    else
+    {
+       cout<<" Ups la reservacion no fue encontrada "<<endl; 
+    }
+}
+
 int main()
 {
-    int op, dia, hora, personas,Co, o;
-    char nombre[100];
-    char mes[50];
-    cout<<" Bienvenido a el restaurante JHAAZ\n ";
-    cout<<" Este es un sitio de reservaciones de ultima generacion "<<endl;
-    cout<<" Para realizar su reservacion conteste el pequeño formulario "<<endl;
-    cout<<" RESERVACIONES ";
-    cout<<" Por favor, introduzca el nombre de la persona a quien quedaria la reservacion "<<endl;
-    cin>>nombre;
-    cout<<" ¿Para que fecha le gustaria asignar su reservacion? "<<nombre<<endl;
-    cout<<" Por favor, especifique el dia deseado"<<endl;
-    cin>>dia;
-    cout<<" Por favor ingrese el mes deseado "<<endl;
-    cin>>mes;
-    cout<<" Ahora seleccione el horario, es importante que lo seleccione EN FORMATO 24HRS "<<endl;
-    cin>>hora;
-    cout<<" ¿Para cuantos comensales seria su mesa?"<<endl;
-    cin>>personas;
-    cout<<" Perfecto, para hacer la confirmacion\n ";
-    cout<<" su reservacion quedaria a nombre de "<<nombre<<" el dia "<<dia<<" de "<<mes<<" a las "<<hora<<" horas con una mesa para "<<personas<<" comenzales";
-    cout<<" ¿Sus datos serian los correctos?, en caso de no serlos no te preocupes para todo hay una solucion ";   
-    cout<<" 1) SI"<<"2) NO "<<endl;
-    cin>>op;
-    if(op==2)
+    int op;
+    do
     {
-      cout<<" Has seleccionado CONSULTAR TU RESERVACION "<<endl;
-      cout<<" ingrese el nombre de la persona con la que se registro su reservacion "<<endl;
-      cin>>nombre;
-      if(nombre==nombre){
-        cout<<" su reservacion es: "<<" el dia "<<dia<<" de "<<mes<<" a las "<<hora<<" con una mesa para "<<personas<<" comenzales"<<endl;
-        cout<<"¿Desea hacer algun cambio? "<<endl;
-        cout<<" 1) SI"<<" 2) NO "<<endl;
-        cin>>o;
-        if(o==1){
-            char nombre2[100];
-            char mes2[50];
-            cout<<" Para reagendar le solicitamos llenar el formulario nuevamente con sus cambios corespondientes ";
-            cout<<" Por favor, introduzca el nombre de la persona a quien quedaria la reservacion "<<endl;
-            cin>>nombre2;
-            cout<<" ¿Para que fecha le gustaria asignar su reservacion? "<<nombre2<<endl;
-            cout<<" Por favor, especifique el dia deseado"<<endl;
-            cin>>dia;
-            cout<<" Por favor ingrese el mes deseado "<<endl;
-            cin>>mes2;
-            cout<<" Ahora seleccione el horario, es importante que lo seleccione EN FORMATO 24HRS "<<endl;
-            cin>>hora;
-            cout<<" ¿Para cuantos comensales seria su mesa?"<<endl;
-            cin>>personas;
-            cout<<" Perfecto, para hacer la confirmacion\n ";
-            cout<<" su reservacion quedaria a nombre de "<<nombre2<<" el dia "<<dia<<" de "<<mes2<<" a las "<<hora<<" horas con una mesa para "<<personas<<" comenzales"<<endl;
-           cout<<" Perfecto se ha reagendado su reservacion, que tenga un buen dia "<<nombre2<<" vuelva prontoo";
-        }
-        else if(o==2){
-            cout<<" Okay su reservacion quedaria completamente igual a nombre de "<<nombre<<" el dia "<<dia<<" de "<<mes<<" a las "<<hora<<" horas con una mesa para "<<personas<<" comenzales"<<endl;
-            cout<<" que tenga un bonito dia"<<nombre<<" vuelva pronto!!";
-        }
-      }
-      else
+      cout<<" Bienvenido al restaurante JHAAZ\n";
+      cout<<" este es un sitio de reservaciones de ultima generacion\n ";
+      cout<<" A continuacion estos son los servicios que ofrecemos, seleccione la opcion que desee\n ";
+      cout<<" 1) RESERVACIONES\n ";
+      cout<<" 2) VER TUS RESERVACIONES\n ";
+      cout<<" 3) CONSULTAR TUS RESERVACIONES\n ";
+      cout<<" 4) CANCELAR RESERVACION\n ";
+      cout<<" 5) CONFIRMAR RESERVACION\n ";
+      cin>>op;
+      switch(op)
       {
-        cout<<" Ups el nombre que acaba de ingresar no coincide con ninguna reservacion registrada ";
+        case 1:
+         crearR();
+         break;
+        case 2:
+         listR();
+         break;
+        case 3:
+         actR();
+         break;
+        case 4:
+         eliR();
+         break;
+        case 5:
+         cout<<" Perfecto, has confirmado tu reservacion y ha sido agendada correctamente\n ";
+         cout<<" Gracias por reservar en JHAAZ vuelva pronto :) ";
+         break;
+        default:
+         cout<<" Ups ha ocurrido un error la opcion no coincide con ninguno de nuestros servicios "<<endl;
+         break;
       }
-    }
-    else if(op==1)
-    {
-        cout<<" Reservacion registrada, que tenga un buen dia "<<nombre<<" vuelva pronto ";
-    }
-    return 0;
+    } while ( op!=5 );
+    return 0;
 }
