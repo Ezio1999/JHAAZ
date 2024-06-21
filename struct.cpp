@@ -1,31 +1,35 @@
-//Codigo hecho por Ignacio :)
 #include <iostream>
+#include <string>
 using namespace std;
 
-struct empleado
+struct trabajo
 {
-    char nombre[30];
-    char edad[10];
-    char sexo;
-    char puesto[50];
+    char nombre[20];
+    int edad;
+    char sexo[20];
+    char trabajo[20];
+
 };
 
-int main (){
-    empleado miEmpleado;
-    cout << "Ingrese su nombre: ";
-    cin >> miEmpleado.nombre;
-    cout << "Ingrese su edad: ";
-    cin >> miEmpleado.edad;
-    cout << "Ingrese su sexo (M/F): ";
-    cin >> miEmpleado.sexo;
-    cout << "Ingrese su puesto: ";
-    cin >> miEmpleado.puesto;
 
-    cout << "\nInformación del empleado:\n";
-    cout << "Nombre: " << miEmpleado.nombre << endl;
-    cout << "Edad: " << miEmpleado.edad << endl;
-    cout << "Sexo: " << miEmpleado.sexo << endl;
-    cout << "Puesto: " << miEmpleado.puesto << endl;
+int main()
+{
+    trabajo user;
+    cout<<"Ingresa Tu Nombre: ";
+    cin>>user.nombre;
+    cout<<"Ingresa Tu Edad: ";
+    cin>>user.edad;
+    cout<<"Ingresa Tu Genero: ";
+    cin>>user.sexo;
+    cout<<"Ingresa Tu Puesto: ";
+    cin>>user.trabajo;
+
+    cout<<"**INFORMACION DEL EMPLEADO**\n";
+
+    cout<< "NOMBRE: "<< user.nombre <<endl;
+    cout<< "EDAD: "<< user.edad <<endl;
+    cout<< "GENERO: "<< user.sexo <<endl;
+    cout<< "PUESTO: "<< user.trabajo <<endl;
 
     return 0;
 }
